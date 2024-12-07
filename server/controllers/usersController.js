@@ -69,6 +69,7 @@ exports.createUser = async (req, res) => {
     password,
     parentId,
     childrens,
+    school,
     classroomId,
     role
   } = req.body;
@@ -108,9 +109,10 @@ exports.createUser = async (req, res) => {
     phone,
     address,
     role,
-    parentId: null,
-    childrens: null,
-    classroomId: null,
+    school: school || null,
+    parentId: parentId || null,
+    childrens: childrens || null,
+    classroomId: classroomId || null,
     password: hashedPassword,
   };
 

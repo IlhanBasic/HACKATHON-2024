@@ -7,6 +7,7 @@
     "phone": "0644344055",
     "address": "Ive Lole Ribara 27",
     "role": "roditelj",
+    "school":null,
     "parentId": null,
     "childrens": [1733579557768],
     "classroomId": null,
@@ -20,6 +21,7 @@
     "phone": "0641234567",
     "address": "Kralja Petra 10",
     "role": "razredni",
+    "school": "Bratstvo",
     "parentId": null,
     "childrens": null,
     "classroomId": "64d1f2a8b9c33e1e7b9a7c01",
@@ -33,6 +35,7 @@
     "phone": "0659876543",
     "address": "Njegoševa 5",
     "role": "roditelj",
+    "school" :null,
     "parentId": null,
     "childrens": [1733579557770],
     "classroomId": null,
@@ -46,6 +49,7 @@
     "phone": "0648765432",
     "address": "Dositejeva 15",
     "role": "admin",
+    "school": null,
     "parentId": null,
     "childrens": null,
     "classroomId": null,
@@ -60,6 +64,7 @@
     "address": "Cara Dušana 20",
     "role": "dete",
     "parentId": 1733579557764,
+    "school" :"Bratstvo",
     "childrens": null,
     "classroomId": "64d1f2a8b9c33e1e7b9a7c01",
     "password": "$2a$10$MnKw98HY7h2BPvYRiGFJv.kT6sL3KNg2K3W7v1o3YovLKH6JLR3Fp"
@@ -74,6 +79,7 @@
     "role": "dete",
     "parentId": 1733579557766,
     "childrens": null,
+    "school" :"Bratstvo",
     "classroomId": "64d1f2a8b9c33e1e7b9a7c01",
     "password": "$2a$10$MnKw98HY7h2BPvYRiGFJv.kT6sL3KNg2K3W7v1o3YovLKH6JLR3Fp"
   }

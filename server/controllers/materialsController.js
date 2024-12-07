@@ -1,8 +1,27 @@
 const { readJsonFromFile, writeJsonToFile } = require("../utils/fileUtils");
 const materialsFilePath = "./data/materials.json";
-
+const usersPath = "./data/users.json";
 exports.getAllMaterials = async (req, res) => {
   const materials = await readJsonFromFile(materialsFilePath);
+  const users = await readJsonFromFile(usersPath);
+
+  const updatedMaterials = materials.map((material) => {
+    const user = users.find((user) => user.id === parseInt(material.createdBy));
+
+    if (user) {
+      return {
+        ...material,
+        createdBy: user.name + " " + user.surname,
+      };
+    } else {
+      return {
+        ...material,
+        createdBy: "Nepoznati korisnik",
+      };
+    }
+  });
+
+  res.status(200).json(updatedMaterials);
   res.status(200).json(materials);
 };
 
@@ -21,12 +40,14 @@ exports.getMaterialById = async (req, res) => {
 exports.createMaterial = async (req, res) => {
   const { title, description, type, createdBy, classroomId, link } = req.body;
 
-  if (!title || !description || !type || !createdBy || !classroomId ) {
-    return res.status(400).json({ message: "Sva polja osim linka su obavezna." });
+  if (!title || !description || !type || !createdBy || !classroomId) {
+    return res
+      .status(400)
+      .json({ message: "Sva polja osim linka su obavezna." });
   }
 
   let materials = await readJsonFromFile(materialsFilePath);
-  
+
   const newMaterial = {
     id: Date.now(),
     title,
@@ -35,7 +56,7 @@ exports.createMaterial = async (req, res) => {
     createdBy,
     classroomId,
     link: link || "",
-    date: new Date().toISOString()
+    date: new Date().toISOString(),
   };
 
   materials.push(newMaterial);
@@ -52,8 +73,10 @@ exports.updateMaterial = async (req, res) => {
   }
 
   let materials = await readJsonFromFile(materialsFilePath);
-  const materialIndex = materials.findIndex((material) => material.id === parseInt(id));
-  
+  const materialIndex = materials.findIndex(
+    (material) => material.id === parseInt(id)
+  );
+
   if (materialIndex === -1) {
     return res.status(404).json({ message: "Materijal nije pronađen." });
   }
@@ -66,7 +89,10 @@ exports.updateMaterial = async (req, res) => {
     createdBy,
     classroomId,
     attachments: attachments || materials[materialIndex].attachments,
-    responsesRequired: responsesRequired !== undefined ? responsesRequired : materials[materialIndex].responsesRequired
+    responsesRequired:
+      responsesRequired !== undefined
+        ? responsesRequired
+        : materials[materialIndex].responsesRequired,
   };
 
   await writeJsonToFile(materialsFilePath, materials);
@@ -76,7 +102,9 @@ exports.updateMaterial = async (req, res) => {
 exports.deleteMaterial = async (req, res) => {
   const { id } = req.params;
   let materials = await readJsonFromFile(materialsFilePath);
-  const materialIndex = materials.findIndex((material) => material.id === parseInt(id));
+  const materialIndex = materials.findIndex(
+    (material) => material.id === parseInt(id)
+  );
 
   if (materialIndex === -1) {
     return res.status(404).json({ message: "Materijal nije pronađen." });
