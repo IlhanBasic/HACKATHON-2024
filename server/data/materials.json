@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1733579457761,
+      "title": "Domaći zadatak - Matematika",
+      "description": "Izračunajte zadatke sa strane 20, 21 i 22 iz učbenika.",
+      "type": "Domaci",
+      "createdBy":1733579557765, 
+      "classroomId": "64d1f2a8b9c33e1e7b9a7c01", 
+      "date": "2024-12-15",
+      "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    {
+      "id": 1744479457761,
+      "title": "Čitanje - Levo i desno",
+      "description": "Pročitajte tekst na strani 30 i napišite sažetak.",
+      "type": "Knjiga",
+      "createdBy": 1733579557765,  
+      "classroomId": "64d1f2a8b9c33e1e7b9a7c01", 
+      "date": "2024-12-20",
+      "link":"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    }
+  ]
+  

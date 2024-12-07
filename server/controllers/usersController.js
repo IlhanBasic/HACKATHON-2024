@@ -67,9 +67,13 @@ exports.createUser = async (req, res) => {
     phone,
     address,
     password,
+    parentId,
+    childrens,
+    classroomId,
+    role
   } = req.body;
 
-  if (!name || !surname || !email || !phone || !address || !password) {
+  if (!name || !surname || !email || !phone || !address || !password || !role) {
     return res.status(400).json({ message: "Sva polja su obavezna." });
   }
   if(RegExp(/^[a-zA-Z]{2,}$/).test(name) === false) {
@@ -103,6 +107,10 @@ exports.createUser = async (req, res) => {
     email,
     phone,
     address,
+    role,
+    parentId: null,
+    childrens: null,
+    classroomId: null,
     password: hashedPassword,
   };
 
@@ -114,24 +122,12 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   const { id } = req.params;
-  const { name, surname, email, phone, address } = req.body;
+  const {phone, address } = req.body;
   if(
-    !name ||
-    !surname ||
-    !email ||
     !phone ||
     !address
   ) {
     return res.status(400).json({ message: "Sva polja su obavezna." });
-  }
-  if(RegExp(/^[a-zA-Z]{2,}$/).test(name) === false) {
-    return res.status(400).json({ message: "Ime nije validno." });
-  }
-  if(RegExp(/^[a-zA-Z]{2,}$/).test(surname) === false) {
-    return res.status(400).json({ message: "Prezime nije validno." });
-  }
-  if(RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/).test(email) === false) {
-    return res.status(400).json({ message: "Email nije validan." });
   }
   if(RegExp(/^[0-9]{9,10}$/).test(phone) === false) {
     return res.status(400).json({ message: "Broj telefona nije validan." });
@@ -143,9 +139,6 @@ exports.updateUser = async (req, res) => {
   if (userIndex !== -1) {
     users[userIndex] = {
       ...users[userIndex],
-      name,
-      surname,
-      email,
       phone,
       address,
     };
